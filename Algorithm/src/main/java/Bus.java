@@ -3,7 +3,7 @@ enum busState {
     inGarage
 }
 
-public class Bus {
+public class Bus extends Vehicle {
     public int busNum;
     public int charge = 0;
     public int curPassenger = 0;
@@ -43,33 +43,5 @@ public class Bus {
         charge += 1000;
     }
 
-    public boolean CheckOil(float speed) {
-        if(oil < 10)
-        {
-            System.out.println("주유량을 확인해라.");
-            return false;
-        }
-        return true;
-    }
-
-    public void setSpeed(float speed) {
-        if(!CheckOil(speed))
-            return;
-        this.speed = speed;
-    }
-
-    public void accelerate(float speed)
-    {
-        if(!CheckOil(speed))
-            return;
-        this.speed += speed;
-    }
-
-    public void decelerate(float speed)
-    {
-        if(!CheckOil(speed))
-            return;
-        this.speed -= speed;
-    }
 }
 
