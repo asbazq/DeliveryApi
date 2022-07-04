@@ -1,4 +1,4 @@
-public abstract class Vehicle { // 추상클래스
+public abstract class Vehicle { // 추상클래스 > 오버라이딩 필수
     public float oil;
     public float speed;
 
