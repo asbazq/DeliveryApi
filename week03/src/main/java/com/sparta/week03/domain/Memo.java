@@ -14,7 +14,7 @@ public class Memo extends Timestamped { // 생성,수정 시간을 자동으로 
     @Id
     private Long id;
 
-     // password를 출력되지 않도록 무시한다.
+     @Jsonignore// password를 출력되지 않도록 무시한다.
     @Column(nullable = false)
     private Long password;
 
