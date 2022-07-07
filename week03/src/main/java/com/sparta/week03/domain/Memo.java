@@ -1,5 +1,6 @@
 package com.sparta.week03.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +10,11 @@ import javax.persistence.*;
 @Getter
 @Entity // 테이블과 연계됨을 스프링에게 알려줍니다.
 public class Memo extends Timestamped { // 생성,수정 시간을 자동으로 만들어줍니다.
-
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
 
+     // password를 출력되지 않도록 무시한다.
     @Column(nullable = false)
     private Long password;
 
@@ -47,4 +48,12 @@ public class Memo extends Timestamped { // 생성,수정 시간을 자동으로 
         this.password = requestDto.getPassword();
     }
 
+
+    public boolean compare(Memo other) { // private password를 사용하기 위해 생성
+        if (password.equals(other.password)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
