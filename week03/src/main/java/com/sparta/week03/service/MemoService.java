@@ -34,7 +34,7 @@ public class MemoService {
     }
 
     @Transactional
-    public Long Delete(Long id, MemoRequestDto requestDto) {
+    public Long Delete(Long id, MemoRequestDto requestDto) { // 삭제
         Memo memo = memoRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
