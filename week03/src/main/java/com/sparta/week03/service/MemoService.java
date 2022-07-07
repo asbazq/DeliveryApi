@@ -3,6 +3,7 @@ package com.sparta.week03.service;
 import com.sparta.week03.domain.Memo;
 import com.sparta.week03.domain.MemoRepository;
 import com.sparta.week03.domain.MemoRequestDto;
+import com.sparta.week03.domain.PostRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,25 @@ public class MemoService {
         Memo memo = memoRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-        Memo psw = new Memo(requestDto); // update메소드의 파라미터가 MemoREquestDto이기에 생성자를 통해 비교에 필요한 Memo로 변환
-        if (!memo.compare(psw)) throw new IllegalArgumentException("passwordㄴㄴ");
+        if (!memo.getPassword().equals(requestDto.getPassword())) throw new IllegalArgumentException("X");
         memo.update(requestDto); //requestDto를 파라미터로 자지고 실행 , memo class에 update 생성
+        return memo.getId(); // 실행 값(Id)
+    }
+
+    @Transactional
+    public PostRequestDto getContents(Long id) {
+        Memo memo = memoRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        return new PostRequestDto(memo);
+    }
+
+    @Transactional
+    public Long Delete(Long id, MemoRequestDto requestDto) {
+        Memo memo = memoRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        if (!memo.getPassword().equals(requestDto.getPassword())) throw new IllegalArgumentException("X");
         return memo.getId(); // 실행 값(Id)
     }
 }

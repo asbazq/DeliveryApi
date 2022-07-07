@@ -1,12 +1,11 @@
 package com.sparta.week03.ControllerPackage;
 
-import com.sparta.week03.domain.Memo;
-import com.sparta.week03.domain.MemoRepository;
-import com.sparta.week03.domain.MemoRequestDto;
+import com.sparta.week03.domain.*;
 import com.sparta.week03.service.MemoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,13 +23,17 @@ public class MemoController {
     }
 
     @GetMapping("/api/memos") // 조회
-    public List<Memo> getMemos() {
-        return memoRepository.findAllByOrderByModifiedAtDesc(); // 전부 출력
+    public List<ReadRequestDto> getMemos() {
+        List<ReadRequestDto> result = new ArrayList<ReadRequestDto>();
+        for (Memo memo : memoRepository.findAllByOrderByCreatedAtDesc())
+            result.add(new ReadRequestDto(memo));
+        return result;
     }
-    //추가
-    @GetMapping("/api/memos/{id}") // 조회
-    public Optional<Memo> getcontents(@PathVariable Long id) {
-        return memoRepository.findById(id);
+
+
+    @GetMapping("/api/memos/{id}") // 게시글 조회
+    public PostRequestDto getcontents(@PathVariable Long id) {
+        return memoService.getContents(id);
     }
 
 
