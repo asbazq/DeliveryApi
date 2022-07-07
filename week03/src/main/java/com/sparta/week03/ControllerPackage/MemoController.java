@@ -24,7 +24,7 @@ public class MemoController {
 
     @GetMapping("/api/memos") // 조회
     public List<ReadRequestDto> getMemos() {
-        List<ReadRequestDto> result = new ArrayList<ReadRequestDto>();
+        List<ReadRequestDto> result = new ArrayList<>();
         for (Memo memo : memoRepository.findAllByOrderByCreatedAtDesc())
             result.add(new ReadRequestDto(memo));
         return result;
