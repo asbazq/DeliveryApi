@@ -39,6 +39,7 @@ public class MemoService {
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         if (!memo.getPassword().equals(requestDto.getPassword())) throw new IllegalArgumentException("X");
-        return memo.getId(); // 실행 값(Id)
+        memoRepository.delete(memo);
+        return memo.getId();
     }
 }

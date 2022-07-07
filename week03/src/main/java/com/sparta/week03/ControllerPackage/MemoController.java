@@ -38,9 +38,8 @@ public class MemoController {
 
 
     @DeleteMapping("/api/memos/{id}") // 삭제   변수는 {}안에 넣어줌
-    public Long deleteMemo(@PathVariable Long id) {
-        memoRepository.deleteById(id); // id의 위치를 모르기 때문에 @PathVariable을 사용하여 경로에 있는 변수{}를 가져옴
-
+    public Long deleteMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
+        memoService.Delete(id, requestDto); // id의 위치를 모르기 때문에 @PathVariable을 사용하여 경로에 있는 변수{}를 가져옴
         return id;
     }
 
