@@ -48,12 +48,4 @@ public class Memo extends Timestamped { // 생성,수정 시간을 자동으로 
         this.password = requestDto.getPassword();
     }
 
-
-    public boolean compare(Memo other) { // private password를 사용하기 위해 생성
-        if (password.equals(other.password)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor // final이나 @NonNull인 필드 값만 파라미터로 받는 생성자를 만듦
 @RestController // 해당 어노테이션을 통해 아래에 생성자를 선언해줄 필요 없이, 스프링이 처리함 (파라미터는 위 어노테이션을 통해 생성)
