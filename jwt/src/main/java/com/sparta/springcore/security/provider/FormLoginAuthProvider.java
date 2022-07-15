@@ -1,6 +1,6 @@
 package com.sparta.springcore.security.provider;
 
-import com.sparta.springcore.security.UserDetailsImpl;
+import com.sparta.springcore.security.FormLoginSuccessHandler;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +29,7 @@ public class FormLoginAuthProvider implements AuthenticationProvider {
         String password = (String) token.getCredentials();
 
         // UserDetailsService 를 통해 DB에서 username 으로 사용자 조회
-        UserDetailsImpl userDetails = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
+        FormLoginSuccessHandler.UserDetailsImpl userDetails = (FormLoginSuccessHandler.UserDetailsImpl) userDetailsService.loadUserByUsername(username);
         if (!passwordEncoder.matches(password, userDetails.getPassword())) {
             throw new BadCredentialsException(userDetails.getUsername() + "Invalid password");
         }

@@ -2,7 +2,7 @@ package com.sparta.springcore.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.sparta.springcore.security.UserDetailsImpl;
+import com.sparta.springcore.security.FormLoginSuccessHandler;
 
 import java.util.Date;
 
@@ -22,7 +22,7 @@ public final class JwtTokenUtils {
     public static final String CLAIM_USER_NAME = "USER_NAME";
     public static final String JWT_SECRET = "jwt_secret_!@#$%";
 
-    public static String generateJwtToken(UserDetailsImpl userDetails) {
+    public static String generateJwtToken(FormLoginSuccessHandler.UserDetailsImpl userDetails) {
         String token = null;
         try {
             token = JWT.create()

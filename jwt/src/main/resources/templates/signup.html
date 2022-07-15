@@ -5,45 +5,103 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta property="og:title" content="항해 ING">
+  <meta property="og:description" content="항해99의 여정을 공유해주세요!">
+  <meta property="og:image" content="images/og_img.png">
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <meta charset="UTF-8">
   <title>회원가입 페이지</title>
   <script>
-    function onclickAdmin() {
-      // Get the checkbox
-      var checkBox = document.getElementById("admin-check");
-      // Get the output text
-      var box = document.getElementById("admin-token");
+    $(document).ready(function () {
+      usercheck();
+    })
 
-      // If the checkbox is checked, display the output text
-      if (checkBox.checked == true){
-        box.style.display = "block";
-      } else {
-        box.style.display = "none";
+    function usercheck() {
+      $.ajax({
+        type: "GET",
+        url: "/api/usercheck",
+        success: function (response) {
+          let usercheck = response;
+          if (usercheck != "") {
+            window.location.replace("/")
+            alert("이미 로그인되었습니다'-')/signup")
+          }
+        }
+      });
+    }
+
+    function check_pw() {
+      var pw = document.getElementById('pw').value;
+      var pw2 = document.getElementById('pw2').value;
+      if (pw.length < 4) {
+        document.getElementById('check').innerHTML = '비밀번호는 4자리 이상입니다.'
+        document.getElementById('check').style.color = 'red';
+        document.getElementById('login-id-submit').disabled = 'disabled';
+        document.getElementById('login-id-submit').style.color = 'gray';
+      } else if (pw != '' && pw2 != '') {
+        if (pw == pw2) {
+          document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
+          document.getElementById('check').style.color = 'blue';
+          document.getElementById('login-id-submit').disabled = false;
+          document.getElementById('login-id-submit').style.color = 'white';
+        } else {
+          document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
+          document.getElementById('check').style.color = 'red';
+          document.getElementById('login-id-submit').disabled = 'disabled';
+          document.getElementById('login-id-submit').style.color = 'gray';
+        }
       }
     }
   </script>
+  <style>
+    body {
+      background-color: #1E3E7C;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    #login-title {
+      font-family: 'Jua', sans-serif !important;
+      text-align: center;
+    }
+
+    #login-title span {
+      font-size: 50px;
+      font-family: 'Jua', sans-serif !important;
+    }
+
+    .signup-error-comment {
+      color: red;
+    }
+
+  </style>
 </head>
 <body>
 <div id="login-form">
-  <div id="login-title">Sign up Select Shop</div>
-
+  <a href="/">
+    <div id="login-title">회원 가입<br><br><span>항해 ING</span></div>
+  </a>
+  <div><br><br><br></div>
   <form action="/user/signup" method="post">
-    <div class="login-id-label">Username</div>
-    <input type="text" name="username" placeholder="Username" class="login-input-box">
+    <div class="login-id-label">닉네임</div>
+    <input type="text" name="username" class="login-input-box">
+    <h5 class="signup-error-comment" th:if="${errortext}" th:text="${errortext}">Error</h5>
+    <div class="login-id-label">비밀번호</div>
+    <input type="password" name="password" class="login-input-box" id="pw">
 
-    <div class="login-id-label">Password</div>
-    <input type="password" name="password" class="login-input-box">
+    <div class="login-id-label">비밀번호 확인</div>
+    <input type="password" name="password2" class="login-input-box" id="pw2" onchange="check_pw()">
+    <div><span id="check"></span></div>
 
-    <div class="login-id-label">E-mail</div>
-    <input type="text" name="email" placeholder="E-mail" class="login-input-box">
-
-    <div>
-      <input id="admin-check" type="checkbox" name="admin" onclick="onclickAdmin()" style="margin-top: 40px;">관리자
-      <input id="admin-token" type="password" name="adminToken" placeholder="관리자 암호" class="login-input-box" style="display:none">
-    </div>
     <button id="login-id-submit">회원 가입</button>
   </form>
 </div>

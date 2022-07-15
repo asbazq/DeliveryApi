@@ -2,7 +2,7 @@ package com.sparta.springcore.security.provider;
 
 import com.sparta.springcore.model.User;
 import com.sparta.springcore.repository.UserRepository;
-import com.sparta.springcore.security.UserDetailsImpl;
+import com.sparta.springcore.security.FormLoginSuccessHandler;
 import com.sparta.springcore.security.jwt.JwtDecoder;
 import com.sparta.springcore.security.jwt.JwtPreProcessingToken;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class JWTAuthProvider implements AuthenticationProvider {
         //    -> JWT 에 userId, username, role 정보를 암호화/복호화하여 사용
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Can't find " + username));;
-        UserDetailsImpl userDetails = new UserDetailsImpl(user);
+        FormLoginSuccessHandler.UserDetailsImpl userDetails = new FormLoginSuccessHandler.UserDetailsImpl(user);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 
