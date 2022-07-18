@@ -17,13 +17,14 @@ import java.util.List;
 public class RestaurantController {
     //RestaurantService를 불러와 객체를 생성하여 RestaurantService에 연결
     private final RestaurantService restaurantService;
+    //RestaurantRepository를 불러와 객체를 생성하여 RestaurantRepository에 연결
     private final RestaurantRepository restaurantRepository;
 
     // 음식점 등록
     @PostMapping("/restaurant/register")
     public Restaurant createRestaurant (@RequestBody RestaurantRequestDto requestDto) {
         //RestaurantService에 함수를 만들어줌
-        Restaurant restaurant = RestaurantService.createRestaurant(requestDto);
+        Restaurant restaurant = restaurantService.createRestaurant(requestDto);
         return restaurant;
     }
 

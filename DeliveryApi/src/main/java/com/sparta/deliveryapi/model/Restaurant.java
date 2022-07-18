@@ -1,18 +1,17 @@
 package com.sparta.deliveryapi.model;
 
 import com.sparta.deliveryapi.dto.RestaurantRequestDto;
-import jdk.nashorn.internal.objects.annotations.Getter;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
-@Setter // get 함수를 일괄적으로 만들어줍니다.
+@Getter
+@Setter // set 함수를 일괄적으로 만들어줍니다.
 @NoArgsConstructor // 기본 생성자를 만들어줍니다.
 @Entity // DB 테이블 역할을 합니다.
 public class Restaurant {
-
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
@@ -23,19 +22,18 @@ public class Restaurant {
     @Column(nullable = false)
     private int minOderPrice;
 
-    @Column(nullable = true)
-    private int deliveryFree;
+    @Column(nullable = false)
+    private int deliveryFee;
 
-    public Restaurant(Long id, String name, int minOderPrice, int deliveryFree) {
-        this.id = id;
+    public Restaurant(String name, int minOderPrice, int deliveryFee) {
         this.name = name;
         this.minOderPrice = minOderPrice;
-        this.deliveryFree = deliveryFree;
+        this.deliveryFee = deliveryFee;
     }
 
     public Restaurant(RestaurantRequestDto requestDto) {
         this.name = requestDto.getName();
         this.minOderPrice = requestDto.getMinOderPirce();
-        this.deliveryFree = requestDto.getDeliveryFree();
+        this.deliveryFee = requestDto.getDeliveryFee();
     }
 }
