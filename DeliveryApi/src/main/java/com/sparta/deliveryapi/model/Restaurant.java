@@ -20,20 +20,20 @@ public class Restaurant {
     private String name;
 
     @Column(nullable = false)
-    private int minOderPrice;
+    private int minOrderPrice;
 
     @Column(nullable = false)
     private int deliveryFee;
 
-    public Restaurant(String name, int minOderPrice, int deliveryFee) {
+    public Restaurant(String name, int minOrderPrice, int deliveryFee) {
         this.name = name;
-        this.minOderPrice = minOderPrice;
+        this.minOrderPrice = minOrderPrice;
         this.deliveryFee = deliveryFee;
     }
 
     public Restaurant(RestaurantRequestDto requestDto) {
         this.name = requestDto.getName();
-        this.minOderPrice = requestDto.getMinOderPirce();
         this.deliveryFee = requestDto.getDeliveryFee();
+        this.minOrderPrice = requestDto.getMinOrderPrice();
     }
 }

@@ -30,6 +30,6 @@ public class RestaurantController {
 
     @GetMapping("/restaurants")
     public List<Restaurant> getRestaurant () {
-        return restaurantRepository.findAllBy();
+        return restaurantRepository.findAll();
     }
 }
