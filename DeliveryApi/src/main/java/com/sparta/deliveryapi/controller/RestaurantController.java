@@ -24,8 +24,7 @@ public class RestaurantController {
     @PostMapping("/restaurant/register")
     public Restaurant createRestaurant (@RequestBody RestaurantRequestDto requestDto) {
         //RestaurantService에 함수를 만들어줌
-        Restaurant restaurant = restaurantService.createRestaurant(requestDto);
-        return restaurant;
+        return restaurantService.createRestaurant(requestDto);
     }
 
     @GetMapping("/restaurants")
