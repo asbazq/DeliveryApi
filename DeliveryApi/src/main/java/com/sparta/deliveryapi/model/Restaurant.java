@@ -17,7 +17,7 @@ public class Restaurant {
     private Long id;
 
     @Column(nullable = false)
-    private String restaurantName;
+    private String name;
 
     @Column(nullable = false)
     private int minOrderPrice;
@@ -25,14 +25,14 @@ public class Restaurant {
     @Column(nullable = false)
     private int deliveryFee;
 
-    public Restaurant(String restaurantName, int minOrderPrice, int deliveryFee) {
-        this.restaurantName = restaurantName;
+    public Restaurant(String name, int minOrderPrice, int deliveryFee) {
+        this.name = name;
         this.minOrderPrice = minOrderPrice;
         this.deliveryFee = deliveryFee;
     }
 
     public Restaurant(RestaurantRequestDto requestDto) {
-        this.restaurantName = requestDto.getName();
+        this.name = requestDto.getName();
         this.deliveryFee = requestDto.getDeliveryFee();
         this.minOrderPrice = requestDto.getMinOrderPrice();
     }

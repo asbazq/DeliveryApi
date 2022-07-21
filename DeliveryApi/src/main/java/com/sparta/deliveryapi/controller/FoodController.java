@@ -15,11 +15,9 @@ import java.util.List;
 public class FoodController {
     //MenuService를 불러와 객체를 생성하여 MenuService에 연결
     private final FoodService foodService;
-    private final FoodRepository foodRepository;
     @PostMapping("/restaurant/{restaurantId}/food/register")
-    public FoodOrder createMenu(@PathVariable Long restaurantId, @RequestBody List<FoodDto> requestDto) {
+    public void createMenu(@PathVariable Long restaurantId, @RequestBody List<FoodDto> requestDto) {
         foodService.createMenu(restaurantId, requestDto);
-        return null;
     }
 
     @GetMapping("/restaurant/{restaurantId}/foods")

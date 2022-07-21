@@ -14,6 +14,7 @@ public class ContentsService {
 
     private final com.sparta.springweb.repository.ContentsRepository ContentsRepository;
 
+    // DB에서 의도치 않은 값이 저장되거나 조회되는 것을 막음
     @Transactional
     public Contents createContents(ContentsRequestDto requestDto, String username) {
         String contentsCheck = requestDto.getContents();

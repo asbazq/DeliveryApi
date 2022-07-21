@@ -1,7 +1,6 @@
 package com.sparta.deliveryapi.model;
 
 import com.sparta.deliveryapi.dto.FoodDto;
-import com.sparta.deliveryapi.dto.FoodOrderRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +22,7 @@ public class Food {
     private Long restaurantId;
     @Column(nullable = false)
     private int price;
+
 
     public Food(String name, Long restaurantId, int price) {
         this.name = name;

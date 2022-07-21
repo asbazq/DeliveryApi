@@ -28,6 +28,6 @@ public class OderController {
 
     @GetMapping("/orders")
     public List<Order> getOrder() {
-        return orderRepository.findAll();
+        return orderService.getOrder();
     }
 }

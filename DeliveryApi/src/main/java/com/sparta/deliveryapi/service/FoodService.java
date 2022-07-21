@@ -23,20 +23,25 @@ public class FoodService {
 
     @Transactional
     public void createMenu(Long restaurantId, @RequestBody List<FoodDto> requestDto) {
+        // 리스트 형태이기 때문에 for each문으로 객체리스트를 불러옴
         for (FoodDto foodDto : requestDto) {
             String foodName = foodDto.getName();
             int foodPrice = foodDto.getPrice();
 
+            // 같은 음식점 내 음식의 중복 확인하기위해 레포지토리에서 아이디값이랑 네임을 불러와서 중복 확인
             Optional<Food> foodList = foodRepository.findByRestaurantIdAndName(restaurantId, foodName);
+            // isPresent()로 중복확인
             if (foodList.isPresent()) throw new IllegalArgumentException("중복 확인");
             if (foodPrice < 100 || foodPrice > 1000000) throw new IllegalArgumentException("가격 확인");
             if (foodPrice % 100 != 0) throw new IllegalArgumentException("가격 단위 확인");
 
+            // 요청받은 DTO 로 DB에 저장할 객체 만들기
             Food food = new Food(foodName, restaurantId, foodPrice);
             foodRepository.save(food);
         }
     }
 
+    @Transactional
     public List<Food> getMenu(@PathVariable Long restaurantId) {
         return foodRepository.findByRestaurantId(restaurantId);
     }
