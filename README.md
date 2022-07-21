@@ -41,7 +41,7 @@
     
 |title|API Path|Request Body|Response Body|
 |:---:|---|---|---|
-|음식점 등록|  POST /restaurant/{restaurantId}/food/register|	[</br> &nbsp; {</br> &nbsp;&nbsp;   name: "쉑버거 더블",   </br> &nbsp;&nbsp;   price: 10900</br> &nbsp; },</br> &nbsp;  {</br> &nbsp;&nbsp;    name: "치즈 감자튀김", </br> &nbsp;&nbsp;     price: 4900 </br> &nbsp;   }, </br> &nbsp;   { </br> &nbsp;&nbsp;     name: "쉐이크",  </br> &nbsp;&nbsp;    price: 5900 </br> &nbsp;   } </br> ]	||
+|음식점 등록|  POST /restaurant/</br>{restaurantId}/food/register|	[</br> &nbsp; {</br> &nbsp;&nbsp;   name: "쉑버거 더블",   </br> &nbsp;&nbsp;   price: 10900</br> &nbsp; },</br> &nbsp;  {</br> &nbsp;&nbsp;    name: "치즈 감자튀김", </br> &nbsp;&nbsp;     price: 4900 </br> &nbsp;   }, </br> &nbsp;   { </br> &nbsp;&nbsp;     name: "쉐이크",  </br> &nbsp;&nbsp;    price: 5900 </br> &nbsp;   } </br> ]	||
 |음식점 조회|	GET /restaurant/{restaurantId}/foods|	|	[ </br>&nbsp; { </br>&nbsp;&nbsp;   id: 1    </br>&nbsp;&nbsp;  name: "쉐이크쉑 청담점",   </br>&nbsp;&nbsp;   minOrderPrice: 5000,    </br> &nbsp;&nbsp; deliveryFee: 2000 <br/>&nbsp; } <br/> ]|
     
 3. 주문 요청하기 및 주문 조회
