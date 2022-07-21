@@ -18,18 +18,16 @@ import java.util.List;
 @RestController
 public class OderController {
 
-    //OrderService를 불러와 객체를 생성하여 OrderService에 연결
     private final OrderService orderService;
+    private final OrderRepository orderRepository;
 
     @PostMapping("/order/request")
     public OrderResponseDto createOder(@RequestBody OrderRequestDto requestDto) {
-        //OrderService에 함수를 만들어줌
         return orderService.createOrder(requestDto);
     }
 
     @GetMapping("/orders")
     public List<Order> getOrder() {
-        //OrderService에 함수를 만들어줌
         return orderService.getOrder();
     }
 }

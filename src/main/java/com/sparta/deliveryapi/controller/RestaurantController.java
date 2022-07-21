@@ -15,9 +15,10 @@ import java.util.List;
 @RestController // JSON으로 데이터를 주고받음을 선언합니다.
 @RequiredArgsConstructor // final 필드 생성자 생성
 public class RestaurantController {
-
     //RestaurantService를 불러와 객체를 생성하여 RestaurantService에 연결
     private final RestaurantService restaurantService;
+    //RestaurantRepository를 불러와 객체를 생성하여 RestaurantRepository에 연결
+    private final RestaurantRepository restaurantRepository;
 
     // 음식점 등록
     @PostMapping("/restaurant/register")
@@ -28,7 +29,6 @@ public class RestaurantController {
 
     @GetMapping("/restaurants")
     public List<Restaurant> getRestaurant () {
-        //RestaurantService에 함수를 만들어줌
-        return restaurantService.getRestaurant();
+        return restaurantRepository.findAll();
     }
 }

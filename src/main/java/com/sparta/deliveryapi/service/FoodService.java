@@ -43,7 +43,6 @@ public class FoodService {
 
     @Transactional
     public List<Food> getMenu(@PathVariable Long restaurantId) {
-        //FoodRepository 함수를 만들어줌
         return foodRepository.findByRestaurantId(restaurantId);
     }
 }

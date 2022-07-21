@@ -23,7 +23,6 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    //Repository를 불러와 객체를 생성하여 Repository에 연결
     private final OrderRepository orderRepository;
     private final RestaurantRepository restaurantRepository;
     private final FoodRepository foodRepository;
@@ -40,14 +39,13 @@ public class OrderService {
         String restaurantName = restaurant.getName();
 
 
-        // FoodOrderResponseDto에 들어갈 foodOrderResponseDtoList와 FoodOrder에 들어갈 foodOrderList가 필요하기 때문에 각각 생성
+        // OrdersDto에 들어갈 FoodOrderDto 리스트와 Orders에 들어갈 FoodOrder 리스트가 필요하기 때문에 각각 생성
 
         // db에 저장할 리스트 생성
         List<FoodOrder> foodOrderList = new ArrayList<>();
         // 리턴할 타입의 리스트 생성
         List<FoodOrderResponseDto> foodOrderResponseDtoList = new ArrayList<>();
 
-        // 리스트 형태이기 때문에 for each문으로 객체리스트를 불러옴
         for (FoodOrderRequestDto foodOrderDto : requestDto.getFoods()) {
             // FoodOrderRequestDto 에 있는 food의 Id를 통해 food의 quantity 값 불러오기
             Food food = foodRepository.findById(foodOrderDto.getId()).orElseThrow(
@@ -75,7 +73,8 @@ public class OrderService {
         if (restaurant.getMinOrderPrice() > totalPrice) throw new IllegalArgumentException("최소주문가격 미달");
         totalPrice += deliveryFee;
 
-        // 요청받은 DTO 로 DB에 저장할 객체 만들기(Order 테이블에 넣어줄 Orders 객체 생성 후 레포지토리에 저장)
+        // 요청받은 DTO 로 DB에 저장할 객체 만들기
+        // Order 테이블에 넣어줄 Orders 객체 생성 후 레포지토리에 저장
         Order order = new Order(restaurantName, deliveryFee, totalPrice, foodOrderList);
         orderRepository.save(order);
         // 리턴해줄 OrdersResponseDto 생성
@@ -83,7 +82,6 @@ public class OrderService {
     }
     @Transactional
     public List<Order> getOrder() {
-        //OrderRepository에 함수를 만들어줌
         return orderRepository.findAll();
     }
 }
