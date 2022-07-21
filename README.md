@@ -38,7 +38,8 @@
             1. 등록 시 입력한 음식 정보 (name, price)
             2. DB 테이블 ID (id)
             
-    
+**음식 등록 및 메뉴판 조회API**
+
 |title|API Path|Request Body|Response Body|
 |:---:|---|---|---|
 |음식점 등록|  POST /restaurant/</br>{restaurantId}/food/register|	[</br> &nbsp; {</br> &nbsp;&nbsp;   name: "쉑버거 더블",   </br> &nbsp;&nbsp;   price: 10900</br> &nbsp; },</br> &nbsp;  {</br> &nbsp;&nbsp;    name: "치즈 감자튀김", </br> &nbsp;&nbsp;     price: 4900 </br> &nbsp;   }, </br> &nbsp;   { </br> &nbsp;&nbsp;     name: "쉐이크",  </br> &nbsp;&nbsp;    price: 5900 </br> &nbsp;   } </br> ]	||
@@ -70,7 +71,9 @@
             
     - 주문 조회
         - 그동안 성공한 모든 주문 요청을 조회 가능
-        
+
+**주문 요청하기 및 주문 조회API**
+
 |title|API Path|Request Body|Response Body|
 |:---:|---|---|---|
 |음식점 등록|  POST /order/request|	{ </br>&nbsp;  restaurantName: "쉐이크쉑 청담점", </br>&nbsp;  foods: </br>&nbsp;&nbsp; [</br>&nbsp;&nbsp;&nbsp;  name: "쉑버거 더블", </br>&nbsp;&nbsp;&nbsp;  quantity: 1,</br>&nbsp;&nbsp;&nbsp; price: 10900 </br>&nbsp;&nbsp;  ]</br> }	|	{ </br>&nbsp;  restaurantId: 1 </br>&nbsp;  foods: </br>&nbsp;&nbsp; [</br>&nbsp;&nbsp;&nbsp; { </br>&nbsp;&nbsp;&nbsp;&nbsp; name: "쉑버거 더블",</br>&nbsp;&nbsp;&nbsp;&nbsp; quantity: 1, </br>&nbsp;&nbsp;&nbsp;&nbsp; price: 10900 </br>&nbsp;&nbsp;&nbsp; }, </br>&nbsp;&nbsp;&nbsp; { </br>&nbsp;&nbsp;&nbsp;&nbsp; name: "치즈 감자튀김",</br>&nbsp;&nbsp;&nbsp;&nbsp; quantity: 2, </br>&nbsp;&nbsp;&nbsp;&nbsp; price: 9800 </br>&nbsp;&nbsp;&nbsp; }, </br>&nbsp;&nbsp;&nbsp; { </br>&nbsp;&nbsp;&nbsp;&nbsp; name: "쉐이크",</br>&nbsp;&nbsp;&nbsp;&nbsp; quantity: 3, </br>&nbsp;&nbsp;&nbsp;&nbsp; price: 17700 </br>&nbsp;&nbsp;&nbsp; } </br>&nbsp;&nbsp; ], </br>&nbsp;&nbsp; deliveryFee: 2000, </br>&nbsp;&nbsp; totalPrice: 40400 </br> } |
